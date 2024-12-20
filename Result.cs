@@ -11,7 +11,7 @@ namespace Конвертер
 {
     internal class Result
     {
-        public Result(RichTextBox Box)
+        public Result()
         {
 
             this.query = new StringBuilder();

@@ -12,10 +12,10 @@ namespace Конвертер
 {
     internal class Parser
     {
-        public Parser(RichTextBox box)
+        public Parser()
         {
             this.stroke = 1;
-            this.box = box;
+            
             this.patern = @"(\bSUBSTRING\b|\bINSERT\b|\bUPDATE\b|\bDELETE\b|\bSELECT\b|\bFROM\b|\bWHERE\b|\bORDER BY\b|\bGROUP BY\b|\bLIMIT\b|\bDISTINCT\b|\*|\bALL\b|\bAS\b|\bCOUNT\b|,|\(|\)|>|<|;|\bINSERT INTO\b|\bVALUES\b|\bSET\b|=|$|$|\bINNER JOIN\b|\bLEFT JOIN\b|\bRIGHT JOIN\b|\bFULL JOIN\b|\bJOIN\b|\bON\b|\bNOT\b|\bAND\b|\bOR\b|\bIS\b|\bBETWEEN\b|\bLIKE\b|\bILIKE\b|\bIN\b|~|!|\bCUBE\b|\bROLLUP\b|\bLENGTH\b|\bASC\b|\bDESC\b|/|\|\||\+|-|\bNULLS\b|\bNULL\b|\bLAST\b|\bFIRST\b|\bONLY\b|\bSUM\b|\bMIN\b|\bMAX\b|\bAVG\b|[\w\.\'\@]+)";// строка проверки
             machine = new StateMachine();
             this.analis = new Dictionary<string, string>();
@@ -80,7 +80,6 @@ namespace Конвертер
             this.analis.Add("AVG", "<avg>");
             this.analis.Add("SUBSTRING", "<subst>");
 
-            this.box = box;
         }
         public string Analizator(string st)
         {
@@ -127,7 +126,7 @@ namespace Конвертер
 
         public void AutoChange() // переводим все операторы в верхний регистр и меняем текст
         {
-            string proverka = patern; // строка проверки
+           /* string proverka = patern; // строка проверки
             string[] tokens = Regex.Split(box.Text, proverka, RegexOptions.IgnoreCase); // разделение входного кода по токенам, с игнорированием размера текста
             
             int startIndex = 0;
@@ -140,13 +139,13 @@ namespace Конвертер
                 {
                     // процедура изменения цвета
                 }
-            }
-        }
+            }*/
+        } 
         private Dictionary<string, string> analis; // словарь токенов
         
         private StateMachine machine; // конечный автомат
         private int stroke; // номер обрабатываемой строки
-        private RichTextBox box; // блок textbox из главной формы
+
         private string patern; // строка проверки
     }
 }
